@@ -4,6 +4,7 @@ package _03_gui_with_help._3_drum_kit;
  *    Level 1
  */
 
+import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -14,14 +15,32 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import processing.core.PImage;
 
 public class DrumKit implements MouseListener {
 	static boolean canPlaySounds = true; // Set this to false if your computer cannot play sounds
 	JLabel drumLabel;
 
 	public void run() {
+		JFrame drumKit = new JFrame();
+		drumKit.setVisible(true);
+		drumKit.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		drumKit.setTitle("DrumKit!");
+		JPanel panel = new JPanel();
+		drumKit.add(panel);
+		String firstImage = "src/_03_drum_kit/snare.jpg";
+		drumLabel = createLabelImage(firstImage);
+		panel.add(drumLabel);
+		drumKit.pack();
+		//drumLabel.add(mouseClicked);
+		new GridLayout();
+		mouseClicked(null);
+		
 
 		//  Make a JFrame variable and initialize it using "new JFrame()"
 
@@ -61,12 +80,16 @@ public class DrumKit implements MouseListener {
 	}
 
 	public void mouseClicked(MouseEvent e) {
+		System.out.println("mouse clicked");
 		// Print "mouse clicked" to the console. Run your program and watch
 		// the console to see when this is printed.
 
 		JLabel labelClicked = (JLabel) e.getSource(); // This line gets the label
 														// that the mouse
 														// clicked on
+	if(labelClicked.equals(true)) {
+		playSound("drum.wav");
+	}
 
 		// You can use the drum sound provided ("drum.wav") or	
 		// download another drum sound (.wav) and drop it into the Drum Kit package.
